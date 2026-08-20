@@ -1514,7 +1514,7 @@ function renderTeamMembers(){
       <button class="add-member-btn" onclick="addTeamMember()">+ Add ${memberType}</button>
       <div class="team-avg-row" style="margin-top:10px">
         <div class="team-avg-label">${memberType} Average Score &rarr; auto-fills Team Avg % above</div>
-        <div class="team-avg-val" id="team-avg-display">${scores.length>0?avg.toFixed(1)+'%':'—'}</div>
+        <div class="team-avg-val" id="team-avg-display-direct">${scores.length>0?avg.toFixed(1)+'%':'—'}</div>
       </div>
     </div>`;
     container.innerHTML=html;
@@ -2349,6 +2349,8 @@ function trkInit(){
 
 </script>
 
+</div>
+</div>
 
 <div class="modal-overlay" id="aboutModal" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="modal">
