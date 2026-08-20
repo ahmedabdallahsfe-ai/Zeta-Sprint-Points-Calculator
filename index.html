@@ -27,12 +27,34 @@
 <script>
 document.addEventListener('DOMContentLoaded', function(){
   var msr = document.getElementById('panel-msr');
-  if(!msr){
-    var box = document.createElement('div');
-    box.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#7a4;color:#fff;padding:10px 12px;font:12px monospace;z-index:999999;';
-    box.textContent = 'DIAGNOSTIC: panel-msr not found in DOM after load.';
-    document.body.appendChild(box);
+  var allPanels = document.querySelectorAll('.panel');
+  var activePanels = document.querySelectorAll('.panel.active');
+  var pageWrap = document.querySelector('.page-wrap');
+
+  var lines = [];
+  lines.push('panel-msr exists: ' + (msr ? 'YES' : 'NO'));
+
+  if (msr) {
+    var cs = window.getComputedStyle(msr);
+    lines.push('panel-msr.className: "' + msr.className + '"');
+    lines.push('computed display: ' + cs.display);
+    lines.push('computed visibility: ' + cs.visibility);
+    lines.push('computed opacity: ' + cs.opacity);
+    lines.push('offsetHeight: ' + msr.offsetHeight);
+    lines.push('offsetWidth: ' + msr.offsetWidth);
+    var insideWrap = pageWrap ? pageWrap.contains(msr) : 'no .page-wrap found';
+    lines.push('inside .page-wrap: ' + insideWrap);
   }
+
+  lines.push('total .panel elements: ' + allPanels.length);
+  lines.push('total .panel.active elements: ' + activePanels.length);
+  lines.push('document.readyState: ' + document.readyState);
+
+  var box = document.createElement('div');
+  box.id = '__diagbox';
+  box.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#1a7a3a;color:#fff;padding:10px 12px;font:11px/1.5 monospace;z-index:999999;white-space:pre-wrap;max-height:45vh;overflow:auto;';
+  box.textContent = 'DIAGNOSTIC:\n' + lines.join('\n');
+  document.body.appendChild(box);
 });
 </script>
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -507,14 +529,14 @@ footer{text-align:center;padding:18px 0 6px;font-family:"Rajdhani",sans-serif;fo
   </div>
 </div>
 
-<div class="tabs">
-  <button class="tb active" data-role="msr" onclick="sw('msr',this)">Medical Rep</button>
-  <button class="tb" data-role="chc" onclick="sw('chc',this)">CHC / Sales Rep</button>
-  <button class="tb" data-role="dm" onclick="sw('dm',this)">District Manager</button>
-  <button class="tb" data-role="asm" onclick="sw('asm',this)">Area Sales Mgr</button>
-  <button class="tb" data-role="nsm" onclick="sw('nsm',this)">NSM</button>
-  <button class="tb" data-role="bm" onclick="sw('bm',this)">Brand Manager</button>
-  <button class="tb" data-role="tracker" onclick="sw('tracker',this)">&#128202; My Tracker</button>
+<div class="tabs" id="tabsBar">
+  <button class="tb active" data-role="msr">Medical Rep</button>
+  <button class="tb" data-role="chc">CHC / Sales Rep</button>
+  <button class="tb" data-role="dm">District Manager</button>
+  <button class="tb" data-role="asm">Area Sales Mgr</button>
+  <button class="tb" data-role="nsm">NSM</button>
+  <button class="tb" data-role="bm">Brand Manager</button>
+  <button class="tb" data-role="tracker">&#128202; My Tracker</button>
 </div>
 
 <div class="page-wrap">
@@ -1281,19 +1303,18 @@ try{cASM();}catch(e){console.warn('cASM init failed',e);}
 try{cNSM();}catch(e){console.warn('cNSM init failed',e);}
 try{cBM();}catch(e){console.warn('cBM init failed',e);}
 
-// Defensive secondary binding: does not depend on inline onclick attributes at all.
-// Some in-app / restricted WebViews can be inconsistent about firing inline
-// onclick handlers reliably; this addEventListener path is a completely
-// independent mechanism to the same sw() function, bound on both click and
-// touchend so a tap is never silently dropped.
-document.querySelectorAll('.tb[data-role]').forEach(function(btn){
-  function handleTabActivate(e){
-    e.preventDefault();
-    try{ sw(btn.getAttribute('data-role'), btn); }catch(err){ console.warn('tab switch failed', err); }
-  }
-  btn.addEventListener('click', handleTabActivate);
-  btn.addEventListener('touchend', handleTabActivate);
-});
+// Single clean event-delegation handler for tab switching.
+var tabsBar = document.getElementById('tabsBar');
+if (tabsBar) {
+  tabsBar.addEventListener('click', function(e){
+    var btn = e.target.closest ? e.target.closest('.tb') : null;
+    if (!btn && e.target.classList && e.target.classList.contains('tb')) btn = e.target;
+    if (!btn || !tabsBar.contains(btn)) return;
+    var role = btn.getAttribute('data-role');
+    if (!role) return;
+    try { sw(role, btn); } catch(err) { console.warn('tab switch failed', err); }
+  });
+}
 
 // ═══════════════════════════════════════════════════════════════
 // MY POINTS TRACKER — fixed & enhanced
