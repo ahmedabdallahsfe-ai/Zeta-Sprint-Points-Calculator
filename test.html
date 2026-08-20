@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iOS 12 Test</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:sans-serif;background:#f4f7fb;color:#1a1f36}
+.hdr{background:#0d47a1;color:#fff;padding:20px;text-align:center}
+.tabs{display:flex}
+.tb{flex:1;padding:12px;background:#0a3a8a;color:#fff;border:none;font-size:14px}
+.tb.active{background:#1565c0}
+.panel{display:none;padding:20px}
+.panel.active{display:block}
+.kg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.kc{background:#fff;border-radius:10px;padding:15px;box-shadow:0 2px 6px rgba(0,0,0,.1)}
+</style>
+</head>
+<body>
+<div class="hdr"><h1>TEST PAGE</h1><p>If you see this box below, basic rendering works</p></div>
+<div class="tabs">
+<button class="tb active" onclick="sw('a',this)">Tab A</button>
+<button class="tb" onclick="sw('b',this)">Tab B</button>
+</div>
+<div class="panel active" id="panel-a">
+  <div class="kg">
+    <div class="kc"><b>Card 1</b><p>Sales: 85%</p></div>
+    <div class="kc"><b>Card 2</b><p>Coverage: 90%</p></div>
+  </div>
+  <p style="margin-top:20px;color:green;font-weight:bold">PANEL A IS VISIBLE - grid/flex works fine</p>
+</div>
+<div class="panel" id="panel-b">
+  <p style="color:blue;font-weight:bold">PANEL B IS VISIBLE - tab switching JS works fine</p>
+</div>
+<script>
+function sw(id, btn){
+  document.querySelectorAll('.tb').forEach(function(b){b.classList.remove('active');});
+  document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active');});
+  btn.classList.add('active');
+  document.getElementById('panel-'+id).classList.add('active');
+}
+</script>
+</body>
+</html>
