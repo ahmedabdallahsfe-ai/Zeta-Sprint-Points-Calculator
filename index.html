@@ -548,9 +548,9 @@ footer{text-align:center;padding:18px 0 6px;font-family:"Rajdhani",sans-serif;fo
   </div>
   <div class="kg g3">
     <div class="kc">
-      <div class="kl">Sales</div><div class="km">50 pts max &mdash; from 70%</div>
+      <div class="kl">Sales</div><div class="km">50 pts max &mdash; from 60%</div>
       <div class="kr"><input type="range" min="0" max="130" step="1" value="85" id="msr-s" oninput="cMSR()"><span class="kv" id="msr-sv">85%</span></div>
-      <div class="kp" id="msr-sp">— pts</div><div class="zn" id="msr-sn" style="display:none">Below 70% = 0 pts</div>
+      <div class="kp" id="msr-sp">— pts</div><div class="zn" id="msr-sn" style="display:none">Below 60% = 0 pts</div>
     </div>
     <div class="kc">
       <div class="kl">Right Frequency</div><div class="km">40 pts max &mdash; from 60%</div>
@@ -584,9 +584,9 @@ footer{text-align:center;padding:18px 0 6px;font-family:"Rajdhani",sans-serif;fo
   </div>
   <div class="kg g2">
     <div class="kc">
-      <div class="kl">Sales</div><div class="km">60 pts max &mdash; from 70%</div>
+      <div class="kl">Sales</div><div class="km">60 pts max &mdash; from 60%</div>
       <div class="kr"><input type="range" min="0" max="130" step="1" value="85" id="chc-s" oninput="cCHC()"><span class="kv" id="chc-sv">85%</span></div>
-      <div class="kp" id="chc-sp">— pts</div><div class="zn" id="chc-sn" style="display:none">Below 70% = 0 pts</div>
+      <div class="kp" id="chc-sp">— pts</div><div class="zn" id="chc-sn" style="display:none">Below 60% = 0 pts</div>
     </div>
     <div class="kc">
       <div class="kl">Coverage</div><div class="km">40 pts max &mdash; from 60%</div>
@@ -919,10 +919,10 @@ function trkConfirm(msg, cb) {
 }
 
 // ── EXACT LOOKUP TABLES FROM _LU SHEET ──────────────────────────────────
-const LU_MSR_SALES=[[70,1],[71,1.48031],[72,2.065875],[73,2.69907],[74,3.365325],[75,4.057295],[76,4.770472],[77,5.501783],[78,6.248984],[79,7.010363],[80,7.784562],[81,8.570479],[82,9.367202],[83,10.173956],[84,10.990082],[85,11.815006],[86,12.648226],[87,13.489299],[88,14.33783],[89,15.193465],[90,16.055885],[91,16.9248],[92,17.799946],[93,18.681081],[94,19.567983],[95,20.460447],[96,21.358283],[97,22.261315],[98,23.169379],[99,24.082322],[100,25],[101,25.500323],[102,26.110287],[103,26.769864],[104,27.46388],[105,28.184682],[106,28.927575],[107,29.689357],[108,30.467692],[109,31.260795],[110,32.067252],[111,32.885916],[112,33.715835],[113,34.556204],[114,35.406335],[115,36.265631],[116,37.133568],[117,38.009686],[118,38.893573],[119,39.78486],[120,40.682716],[121,41.586776],[122,42.496741],[123,43.412311],[124,44.333189],[125,45.259082],[126,46.190694],[127,47.127734],[128,48.069909],[129,49.016932],[130,49.968511]];
+const LU_MSR_SALES=[[60,0.1],[61,0.2],[62,0.3],[63,0.4],[64,0.5],[65,0.6],[66,0.7],[67,0.8],[68,0.9],[69,0.95],[70,1],[71,1.48031],[72,2.065875],[73,2.69907],[74,3.365325],[75,4.057295],[76,4.770472],[77,5.501783],[78,6.248984],[79,7.010363],[80,7.784562],[81,8.570479],[82,9.367202],[83,10.173956],[84,10.990082],[85,11.815006],[86,12.648226],[87,13.489299],[88,14.33783],[89,15.193465],[90,16.055885],[91,16.9248],[92,17.799946],[93,18.681081],[94,19.567983],[95,20.460447],[96,21.358283],[97,22.261315],[98,23.169379],[99,24.082322],[100,25],[101,25.500323],[102,26.110287],[103,26.769864],[104,27.46388],[105,28.184682],[106,28.927575],[107,29.689357],[108,30.467692],[109,31.260795],[110,32.067252],[111,32.885916],[112,33.715835],[113,34.556204],[114,35.406335],[115,36.265631],[116,37.133568],[117,38.009686],[118,38.893573],[119,39.78486],[120,40.682716],[121,41.586776],[122,42.496741],[123,43.412311],[124,44.333189],[125,45.259082],[126,46.190694],[127,47.127734],[128,48.069909],[129,49.016932],[130,49.968511]];
 const LU_MSR_RF=[[60,1],[61,1.560655],[62,2.244171],[63,2.983285],[64,3.760989],[65,4.568709],[66,5.401184],[67,6.254826],[68,7.127017],[69,8.015756],[70,8.919461],[71,9.836844],[72,10.766839],[73,11.708545],[74,12.66119],[75,13.624104],[76,14.596703],[77,15.578468],[78,16.568938],[79,17.567701],[80,18.574384],[81,19.588648],[82,20.610185],[83,21.638714],[84,22.673974],[85,23.715726],[86,24.76375],[87,25.817838],[88,26.8778],[89,27.943457],[90,29.014641],[91,30.091195],[92,31.172972],[93,32.259833],[94,33.351645],[95,34.448286],[96,35.549637],[97,36.655588],[98,37.766031],[99,38.880867],[100,40]];
 const LU_MSR_COV=[[90,1],[91,1.637151],[92,2.413927],[93,3.253886],[94,4.137701],[95,5.055627],[96,6.001686],[97,6.9718],[98,7.962994],[99,8.972993],[100,10]];
-const LU_CHC_SALES=[[70,1],[71,1.580375],[72,2.287932],[73,3.053043],[74,3.858101],[75,4.694231],[76,5.555987],[77,6.439654],[78,7.342523],[79,8.262522],[80,9.198012],[81,10.147663],[82,11.110369],[83,12.085197],[84,13.071349],[85,14.068132],[86,15.074939],[87,16.091236],[88,17.116545],[89,18.150437],[90,19.192528],[91,20.242467],[92,21.299935],[93,22.364639],[94,23.436313],[95,24.514707],[96,25.599592],[97,26.690756],[98,27.788],[99,28.891139],[100,30],[101,30.600388],[102,31.332344],[103,32.123837],[104,32.956656],[105,33.821618],[106,34.71309],[107,35.627229],[108,36.561231],[109,37.512953],[110,38.480702],[111,39.463099],[112,40.459002],[113,41.467445],[114,42.487602],[115,43.518757],[116,44.560282],[117,45.611624],[118,46.672288],[119,47.741832],[120,48.819845],[121,49.905936],[122,50.999731],[123,52.10086],[124,53.20895],[125,54.323632],[126,55.444535],[127,56.571289],[128,57.703522],[129,58.840864],[130,59.982944]];
+const LU_CHC_SALES=[[60,0.1],[61,0.2],[62,0.3],[63,0.4],[64,0.5],[65,0.6],[66,0.7],[67,0.8],[68,0.9],[69,0.95],[70,1],[71,1.580375],[72,2.287932],[73,3.053043],[74,3.858101],[75,4.694231],[76,5.555987],[77,6.439654],[78,7.342523],[79,8.262522],[80,9.198012],[81,10.147663],[82,11.110369],[83,12.085197],[84,13.071349],[85,14.068132],[86,15.074939],[87,16.091236],[88,17.116545],[89,18.150437],[90,19.192528],[91,20.242467],[92,21.299935],[93,22.364639],[94,23.436313],[95,24.514707],[96,25.599592],[97,26.690756],[98,27.788],[99,28.891139],[100,30],[101,30.600388],[102,31.332344],[103,32.123837],[104,32.956656],[105,33.821618],[106,34.71309],[107,35.627229],[108,36.561231],[109,37.512953],[110,38.480702],[111,39.463099],[112,40.459002],[113,41.467445],[114,42.487602],[115,43.518757],[116,44.560282],[117,45.611624],[118,46.672288],[119,47.741832],[120,48.819845],[121,49.905936],[122,50.999731],[123,52.10086],[124,53.20895],[125,54.323632],[126,55.444535],[127,56.571289],[128,57.703522],[129,58.840864],[130,59.982944]];
 const LU_CHC_COV=[[60,1],[61,1.560655],[62,2.244171],[63,2.983285],[64,3.760989],[65,4.568709],[66,5.401184],[67,6.254826],[68,7.127017],[69,8.015756],[70,8.919461],[71,9.836844],[72,10.766839],[73,11.708545],[74,12.66119],[75,13.624104],[76,14.596703],[77,15.578468],[78,16.568938],[79,17.567701],[80,18.574384],[81,19.588648],[82,20.610185],[83,21.638714],[84,22.673974],[85,23.715726],[86,24.76375],[87,25.817838],[88,26.8778],[89,27.943457],[90,29.014641],[91,30.091195],[92,31.172972],[93,32.259833],[94,33.351645],[95,34.448286],[96,35.549637],[97,36.655588],[98,37.766031],[99,38.880867],[100,40]];
 const LU_DM_FWD=[[60,1],[61,1.155588],[62,1.333511],[63,1.520967],[64,1.714895],[65,1.913784],[66,2.116716],[67,2.323075],[68,2.532412],[69,2.744389],[70,2.958739],[71,3.175246],[72,3.393734],[73,3.614052],[74,3.836073],[75,4.059686],[76,4.284797],[77,4.511319],[78,4.739179],[79,4.968309],[80,5.198648],[81,5.430143],[82,5.662743],[83,5.896403],[84,6.131081],[85,6.36674],[86,6.603343],[87,6.840858],[88,7.079255],[89,7.318505],[90,7.558581],[91,7.799459],[92,8.041116],[93,8.283529],[94,8.526678],[95,8.770543],[96,9.015106],[97,9.260349],[98,9.506257],[99,9.752812],[100,10]];
 const LU_DM_DVC=[[80,1],[81,1.333511],[82,1.714895],[83,2.116716],[84,2.532412],[85,2.958739],[86,3.393734],[87,3.836073],[88,4.284797],[89,4.739179],[90,5.198648],[91,5.662743],[92,6.131081],[93,6.603343],[94,7.079255],[95,7.558581],[96,8.041116],[97,8.526678],[98,9.015106],[99,9.506257],[100,10]];
@@ -964,7 +964,7 @@ const TIERS=[
    feed:"Solid foundation. The curve accelerates sharply above 70% — the jump from 70% to 80% scores more points than going from 50% to 70% combined.",
    hint:"💡 Check you are above the minimum threshold for each KPI first. Below the threshold you score zero on that KPI regardless of effort elsewhere."},
   {min:0,lbl:"Below Target",em:"⚠️",clr:"#7f1919",bg:"#ffebee",bar:"#e53935",
-   feed:"Currently below the competitive threshold. The key is to clear each KPI minimum first: Sales 70%, Right Freq 60%, Coverage 90%.",
+   feed:"Currently below the competitive threshold. The key is to clear each KPI minimum first: Sales 60%, Right Freq 60%, Coverage 90%.",
    hint:"💡 Every KPI has a floor. Below that floor the points are zero. Clear the floors before pushing for higher percentages."}
 ];
 function gt(t){return TIERS.find(x=>t>=x.min);}
@@ -1173,7 +1173,7 @@ function cMSR(){
   document.getElementById("msr-sv").textContent=s+"%"; document.getElementById("msr-rv").textContent=r+"%"; document.getElementById("msr-cv").textContent=c+"%";
   const ps=vlu(s,LU_MSR_SALES), pr=vlu(r,LU_MSR_RF), pc=vlu(c,LU_MSR_COV);
   document.getElementById("msr-sp").textContent=ps.toFixed(1)+" pts"; document.getElementById("msr-rp").textContent=pr.toFixed(1)+" pts"; document.getElementById("msr-cp").textContent=pc.toFixed(1)+" pts";
-  sn("msr-sn",s<70); sn("msr-rn",r<60); sn("msr-cn",c<90);
+  sn("msr-sn",s<60); sn("msr-rn",r<60); sn("msr-cn",c<90);
   rrS("msr",ps+pr+pc,[{k:"s",v:ps},{k:"r",v:pr},{k:"c",v:pc}],gt(ps+pr+pc));
   const wpqEl = document.getElementById("msr-wpq");
   if (wpqEl) wpqEl.innerHTML = CALC_RULE_HTML.msr;
@@ -1183,7 +1183,7 @@ function cCHC(){
   document.getElementById("chc-sv").textContent=s+"%"; document.getElementById("chc-cv").textContent=c+"%";
   const ps=vlu(s,LU_CHC_SALES), pc=vlu(c,LU_CHC_COV);
   document.getElementById("chc-sp").textContent=ps.toFixed(1)+" pts"; document.getElementById("chc-cp").textContent=pc.toFixed(1)+" pts";
-  sn("chc-sn",s<70); sn("chc-cn",c<60);
+  sn("chc-sn",s<60); sn("chc-cn",c<60);
   rrS("chc",ps+pc,[{k:"s",v:ps},{k:"c",v:pc}],gt(ps+pc));
   const wpqEl = document.getElementById("chc-wpq");
   if (wpqEl) wpqEl.innerHTML = CALC_RULE_HTML.chc;
@@ -1274,12 +1274,12 @@ const MONTHS = [
 // KPI definitions — achievement % → points
 const ROLE_KPIS = {
   msr:[
-    {id:'s',label:'Sales Achievement',unit:'%',max:50,lu:'LU_MSR_SALES',fn:'vlu',min:70},
+    {id:'s',label:'Sales Achievement',unit:'%',max:50,lu:'LU_MSR_SALES',fn:'vlu',min:60},
     {id:'r',label:'Right Frequency',unit:'%',max:40,lu:'LU_MSR_RF',fn:'vlu',min:60},
     {id:'c',label:'Coverage',unit:'%',max:10,lu:'LU_MSR_COV',fn:'vlu',min:90}
   ],
   chc:[
-    {id:'s',label:'Sales Achievement',unit:'%',max:60,lu:'LU_CHC_SALES',fn:'vlu',min:70},
+    {id:'s',label:'Sales Achievement',unit:'%',max:60,lu:'LU_CHC_SALES',fn:'vlu',min:60},
     {id:'c',label:'Coverage',unit:'%',max:40,lu:'LU_CHC_COV',fn:'vlu',min:60}
   ],
   dm:[
@@ -2349,7 +2349,7 @@ function trkInit(){
       <h3>KPI thresholds — important!</h3>
       <p>Each KPI has a <strong>minimum threshold</strong>. Below that threshold you score zero on that KPI regardless of your other results:</p>
       <ul>
-        <li>MSR Sales: minimum <strong>70%</strong> to start earning points</li>
+        <li>MSR Sales: minimum <strong>60%</strong> to start earning points</li>
         <li>MSR Right Frequency: minimum <strong>60%</strong></li>
         <li>MSR Coverage: minimum <strong>90%</strong></li>
         <li>Field Working Days: minimum <strong>60%</strong></li>
