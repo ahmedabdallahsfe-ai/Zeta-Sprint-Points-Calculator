@@ -507,6 +507,70 @@ input[type=range]::-moz-range-thumb{width:30px;height:30px}
   .tracker-jump-btn { margin-top: 6px !important; padding: 6px 14px !important; font-size: 11px !important; }
 }
 
+
+/* Interactive Tab Scroll Indicators */
+.tabs-wrap {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  background: #0a3a8a;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+.tabs-scroll-btn {
+  background: rgba(7, 26, 74, 0.85);
+  color: #90caf9;
+  border: none;
+  width: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all .2s;
+  flex-shrink: 0;
+}
+.tabs-scroll-btn:hover {
+  background: #1976d2;
+  color: #fff;
+}
+.tabs-scroll-hint {
+  text-align: center;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.75);
+  background: #071a4a;
+  padding: 4px 0;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(66, 165, 245, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Make scrollbar visibly sleek and scrollable */
+.tabs::-webkit-scrollbar {
+  height: 4px !important;
+  display: block !important;
+}
+.tabs::-webkit-scrollbar-track {
+  background: rgba(7, 26, 74, 0.6);
+}
+.tabs::-webkit-scrollbar-thumb {
+  background: rgba(66, 165, 245, 0.6);
+  border-radius: 2px;
+}
+.tabs::-webkit-scrollbar-thumb:hover {
+  background: #42a5f5;
+}
+.tabs {
+  scroll-behavior: smooth;
+}
+
 /* Enhanced Mobile Vertical / Portrait View Responsiveness */
 @media (max-width: 520px) {
   .hdr-title { font-size: 18px !important; letter-spacing: 0.1em !important; margin-bottom: 4px !important; }
@@ -2467,6 +2531,12 @@ function trkImportData(event) {
     }
   };
   reader.readAsText(file);
+}
+
+
+function scrollTabs(amount) {
+  var bar = document.getElementById('tabsBar');
+  if (bar) bar.scrollBy({ left: amount, behavior: 'smooth' });
 }
 
 function trkInit(){
