@@ -1305,11 +1305,11 @@ function updateStickyBar(){
 }
 document.addEventListener('input', function(e){
   if (e.target && e.target.matches && e.target.matches('input[type=range]')) {
-    requestAnimationFrame(function(){ try { updateStickyBar(); } catch(err) { console.warn('sticky bar update failed', err); } });
+    try { updateStickyBar(); } catch(err) { console.warn('sticky bar update failed', err); }
   }
 });
 document.addEventListener('DOMContentLoaded', function(){
-  requestAnimationFrame(function(){ try { updateStickyBar(); } catch(err) { console.warn('sticky bar update failed', err); } });
+  try { updateStickyBar(); } catch(err) { console.warn('sticky bar update failed', err); }
 });
 
 // ═══════════════════════════════════════════════════════════════
