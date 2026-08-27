@@ -476,6 +476,39 @@ input[type=range]::-moz-range-thumb{width:30px;height:30px}
 }
 
 
+
+/* Prominent My Tracker Tab & Header Quick-Jump Button */
+.tracker-jump-btn {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; margin-left: 8px;
+  padding: 8px 20px; background: linear-gradient(135deg, #f59e0b, #d97706);
+  border: 1.5px solid #fef3c7; border-radius: 20px; color: #fff;
+  font-family: "Rajdhani", sans-serif; font-size: 13px; font-weight: 800;
+  letter-spacing: .08em; text-transform: uppercase; cursor: pointer;
+  transition: all .2s; box-shadow: 0 4px 12px rgba(245,158,11,0.4);
+  position: relative; z-index: 2;
+}
+.tracker-jump-btn:hover { background: linear-gradient(135deg, #b45309, #92400e); transform: translateY(-1px); }
+
+.tb[data-role="tracker"] {
+  background: linear-gradient(135deg, rgba(245,158,11,0.22), rgba(217,119,6,0.22)) !important;
+  color: #fef08a !important; font-weight: 800 !important;
+  border-bottom: 3px solid #f59e0b !important;
+  border-radius: 6px 6px 0 0 !important;
+}
+.tb[data-role="tracker"].active {
+  background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+  color: #fff !important; border-bottom-color: #fff !important;
+}
+.tb[data-role="tracker"]:hover:not(.active) {
+  background: linear-gradient(135deg, rgba(245,158,11,0.35), rgba(217,119,6,0.35)) !important;
+  color: #fff !important;
+}
+
+/* Mobile Quick Tracker Access */
+@media (max-width: 520px) {
+  .tracker-jump-btn { margin-top: 6px !important; padding: 6px 14px !important; font-size: 11px !important; }
+}
+
 /* Enhanced Mobile Vertical / Portrait View Responsiveness */
 @media (max-width: 520px) {
   .hdr-title { font-size: 18px !important; letter-spacing: 0.1em !important; margin-bottom: 4px !important; }
@@ -534,6 +567,7 @@ input[type=range]::-moz-range-thumb{width:30px;height:30px}
     <div class="hdr-title">ZETA SPRINT POINTS CALCULATOR</div>
     <div class="hdr-subtitle">2026 Sales Competition &nbsp;&bull;&nbsp; Jun &ndash; Dec &nbsp;&bull;&nbsp; All Roles</div>
     <button class="about-btn" onclick="document.getElementById('aboutModal').classList.add('open')">&#9432;&nbsp; About Zeta Sprint</button>
+    <button class="tracker-jump-btn" onclick="document.querySelector('.tb[data-role=tracker]').click()">📊 Go to My Tracker</button>
   </div>
 </div>
 
@@ -2520,6 +2554,7 @@ function trkInit(){
 <div class="sticky-score-bar ssb-hidden" id="stickyScoreBar" aria-hidden="true">
   <div class="ssb-left"><span class="ssb-num" id="ssb-num">&mdash;</span><span class="ssb-max">/ 100 pts</span></div>
   <div class="ssb-badge" id="ssb-badge"></div>
+    <button style="background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border:none;border-radius:6px;padding:5px 10px;font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;cursor:pointer" onclick="document.querySelector('.tb[data-role=tracker]').click()">📊 My Tracker</button>
 </div>
 
 </body>
