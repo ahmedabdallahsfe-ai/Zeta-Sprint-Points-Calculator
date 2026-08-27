@@ -41,7 +41,7 @@ body{font-family:"Inter",sans-serif;background:var(--bg);color:var(--tx);min-hei
 .hdr-sub{color:rgba(255,255,255,0.92);font-family:"Rajdhani",sans-serif;font-size:15px;letter-spacing:.16em;font-weight:700;text-transform:uppercase;text-shadow:0 1px 8px rgba(0,0,0,0.4)}
 .tabs{display:flex;overflow-x:auto;background:#0a3a8a;scrollbar-width:none;-ms-overflow-style:none;border-bottom:1px solid rgba(255,255,255,0.1)}
 .tabs::-webkit-scrollbar{display:none}
-.tb{flex:0 0 auto;padding:14px 22px;font-size:14px;font-weight:700;font-family:"Rajdhani",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.45);background:transparent;border:none;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:all .2s}
+.tb{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;padding:14px 22px;font-size:14px;font-weight:700;font-family:"Rajdhani",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.45);background:transparent;border:none;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:all .2s}
 .tb.active{color:#fff;border-bottom-color:#42a5f5;background:rgba(255,255,255,0.1);border-radius:4px 4px 0 0}
 .tb:hover:not(.active){color:rgba(255,255,255,.75)}
 .content{max-width:680px;margin:0 auto;padding:16px 14px 24px}.content-main{}
@@ -570,12 +570,12 @@ input[type=range]::-moz-range-thumb{width:30px;height:30px}
 </div>
 
 <div class="tabs" id="tabsBar">
-  <button class="tb active" role="tab" aria-selected="true" data-role="msr">Medical Rep</button>
-  <button class="tb" role="tab" aria-selected="false" data-role="chc">CHC / Sales Rep</button>
-  <button class="tb" role="tab" aria-selected="false" data-role="dm">District Manager</button>
-  <button class="tb" role="tab" aria-selected="false" data-role="asm">Area Sales Mgr</button>
-  <button class="tb" role="tab" aria-selected="false" data-role="nsm">NSM</button>
-  <button class="tb" role="tab" aria-selected="false" data-role="bm">Brand Manager</button>
+  <button class="tb active" role="tab" aria-selected="true" data-role="msr">🩺 Medical Rep</button>
+  <button class="tb" role="tab" aria-selected="false" data-role="chc">🛒 CHC / Sales Rep</button>
+  <button class="tb" role="tab" aria-selected="false" data-role="dm">👥 District Manager</button>
+  <button class="tb" role="tab" aria-selected="false" data-role="asm">🗺️ Area Sales Mgr</button>
+  <button class="tb" role="tab" aria-selected="false" data-role="nsm">🌐 NSM</button>
+  <button class="tb" role="tab" aria-selected="false" data-role="bm">🎯 Brand Manager</button>
   <button class="tb" data-role="tracker">&#128202; My Tracker</button>
 </div>
 
@@ -639,7 +639,7 @@ input[type=range]::-moz-range-thumb{width:30px;height:30px}
 <!-- MEDICAL REP -->
 <div class="panel active" id="panel-msr">
   <div class="rc">
-    <div class="rt">Medical Rep (MSR)</div>
+    <div class="rt">🩺 Medical Rep (MSR)</div>
     <div class="rm"><span>Sales / 50 pts</span><span>Right Freq / 40 pts</span><span>Coverage / 10 pts</span>&nbsp; Top 2 per Line</div>
   </div>
   <div class="kg g3">
@@ -675,7 +675,7 @@ input[type=range]::-moz-range-thumb{width:30px;height:30px}
 <!-- CHC REP -->
 <div class="panel" id="panel-chc">
   <div class="rc">
-    <div class="rt">CHC / Sales Rep</div>
+    <div class="rt">🛒 CHC / Sales Rep</div>
     <div class="rm"><span>Sales / 60 pts</span><span>Coverage / 40 pts</span>&nbsp; Top 2 per Line</div>
   </div>
   <div class="kg g2">
@@ -705,7 +705,7 @@ input[type=range]::-moz-range-thumb{width:30px;height:30px}
 <!-- DM -->
 <div class="panel" id="panel-dm">
   <div class="rc">
-    <div class="rt">District Manager (DM)</div>
+    <div class="rt">👥 District Manager (DM)</div>
     <div class="rm"><span>Team Avg / 70 pts</span><span>Field Days / 10 pts</span><span>DV Coverage / 10 pts</span><span>Calls/DV / 10 pts</span>&nbsp; Top 2 per BUM</div>
   </div>
   <div class="kg g22">
@@ -747,7 +747,7 @@ input[type=range]::-moz-range-thumb{width:30px;height:30px}
 <!-- ASM -->
 <div class="panel" id="panel-asm">
   <div class="rc">
-    <div class="rt">Area Sales Manager (ASM)</div>
+    <div class="rt">🗺️ Area Sales Manager (ASM)</div>
     <div class="rm"><span>DM Team Avg / 80 pts</span><span>Field Days / 20 pts</span>&nbsp; Top 1 Corporate</div>
   </div>
   <div class="kg g2">
@@ -777,7 +777,7 @@ input[type=range]::-moz-range-thumb{width:30px;height:30px}
 <!-- NSM -->
 <div class="panel" id="panel-nsm">
   <div class="rc">
-    <div class="rt">National Sales Manager (NSM)</div>
+    <div class="rt">🌐 National Sales Manager (NSM)</div>
     <div class="rm"><span>ASM Team Avg / 80 pts</span><span>Field Days / 20 pts</span>&nbsp; Top 1 Corporate &mdash; Monthly + Quarterly + Annual</div>
   </div>
   <div class="kg g2">
@@ -817,7 +817,7 @@ input[type=range]::-moz-range-thumb{width:30px;height:30px}
      for this pass; only the points calculator + qualifier. -->
 <div class="panel" id="panel-bm">
   <div class="rc">
-    <div class="rt">Brand Manager (BM)</div>
+    <div class="rt">🎯 Brand Manager (BM)</div>
     <div class="rm"><span>National Sales / 50 pts</span><span>Regions Covered / 20 pts</span><span>Tactical Plan / 30 pts</span>&nbsp; Recognition only &mdash; no Monthly Sprint cash tier</div>
   </div>
   <div class="kg g3">
