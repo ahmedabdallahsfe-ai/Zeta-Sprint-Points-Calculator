@@ -101,9 +101,9 @@ footer{text-align:center;padding:18px 0 6px;font-family:"Rajdhani",sans-serif;fo
 /* Premium full-bleed logo header */
 .hdr-img-wrap{
   position:relative;width:100%;
-  padding:16px 10px 4px;
+  padding:16px 10px 6px;
   display:flex;align-items:center;justify-content:center;
-  background:#000000;
+  background:transparent;
   isolation:isolate;
   z-index:1;
   max-height:220px;
@@ -113,19 +113,13 @@ footer{text-align:center;padding:18px 0 6px;font-family:"Rajdhani",sans-serif;fo
   width:88%;max-width:440px;max-height:190px;height:auto;
   display:block;margin:0 auto;
   mix-blend-mode:screen;
-  filter:brightness(1.28)
-          drop-shadow(0 0 16px rgba(66,165,245,0.4))
-          drop-shadow(0 0 40px rgba(13,71,161,0.6));
+  filter:brightness(1.35)
+          drop-shadow(0 0 20px rgba(66,165,245,0.5))
+          drop-shadow(0 0 44px rgba(25,118,210,0.6));
   opacity:1
 }
 .hdr-img-wrap::after{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(to bottom,
-    rgba(0,0,0,0.2) 0%,
-    rgba(7,29,74,0.4) 60%,
-    rgba(7,29,74,0.95) 100%
-  );
-  pointer-events:none
+  display:none
 }
 .logo-wrap{
   position:relative;z-index:2;
