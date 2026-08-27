@@ -508,6 +508,33 @@ input[type=range]::-moz-range-thumb{width:30px;height:30px}
 }
 
 
+
+/* Mobile Touch Scroll & Scroll Snap Adjustments */
+.tabs {
+  scroll-behavior: smooth !important;
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-x !important;
+  scroll-snap-type: x mandatory !important;
+}
+.tb {
+  scroll-snap-align: center !important;
+  scroll-snap-stop: normal !important;
+}
+
+@media (max-width: 520px) {
+  .tabs-scroll-btn {
+    width: 38px !important;
+    min-height: 48px !important;
+    font-size: 18px !important;
+    background: rgba(7, 26, 74, 0.95) !important;
+  }
+  .tabs-scroll-hint {
+    padding: 5px 0 !important;
+    font-size: 11px !important;
+    background: #05143a !important;
+  }
+}
+
 /* Interactive Tab Scroll Indicators */
 .tabs-wrap {
   position: relative;
@@ -1400,6 +1427,11 @@ function sw(role, btn) {
   btn.classList.add("active");
   document.getElementById("panel-"+role).classList.add("active");
   if(role==="tracker") trkInit();
+  try {
+    if (btn && btn.scrollIntoView) {
+      btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+  } catch(e) {}
 }
 try{cMSR();}catch(e){console.warn('cMSR init failed',e);}
 try{cCHC();}catch(e){console.warn('cCHC init failed',e);}
