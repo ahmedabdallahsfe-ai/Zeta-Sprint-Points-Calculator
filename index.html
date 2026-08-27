@@ -458,6 +458,21 @@ footer{text-align:center;padding:18px 0 6px;font-family:"Rajdhani",sans-serif;fo
 .crb-text+.crb-text{margin-top:6px}
 .crb-ar{font-family:"Segoe UI",Tahoma,Arial,sans-serif}
 
+@media(max-width:520px){
+.sticky-score-bar{position:fixed;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border-top:1px solid rgba(13,71,161,.14);padding:9px 14px calc(9px + env(safe-area-inset-bottom));box-shadow:0 -3px 10px rgba(0,0,0,.08);z-index:500}
+.sticky-score-bar.ssb-hidden{display:none}
+.ssb-left{display:flex;align-items:baseline;gap:5px}
+.ssb-num{font-family:"Rajdhani",sans-serif;font-weight:700;font-size:23px;color:var(--bd)}
+.ssb-max{font-size:11px;color:var(--t3);font-weight:600}
+.ssb-badge .tbadge{font-size:10px;padding:4px 9px;white-space:nowrap}
+.content-main-inner{padding-bottom:78px}
+input[type=range]{height:10px}
+input[type=range]::-webkit-slider-thumb{width:30px;height:30px}
+input[type=range]::-moz-range-thumb{width:30px;height:30px}
+.kr{padding:6px 0;gap:12px}
+.kc{padding:16px 16px 18px}
+.kg{gap:12px}
+}
 </style>
 </head>
 <body>
@@ -1258,8 +1273,44 @@ if (tabsBar) {
     var role = btn.getAttribute('data-role');
     if (!role) return;
     try { sw(role, btn); } catch(err) { console.warn('tab switch failed', err); }
+    try { updateStickyBar(); } catch(err) { console.warn('sticky bar update failed', err); }
   });
 }
+
+// Mobile sticky score bar — mirrors existing score/badge elements only, no new calculation.
+var SSB_MAP = {
+  msr:{score:'msr-t',badge:'msr-badge'},
+  chc:{score:'chc-t',badge:'chc-badge'},
+  dm:{score:'dm-t2',badge:'dm-badge'},
+  asm:{score:'asm-t2',badge:'asm-badge'},
+  nsm:{score:'nsm-t2',badge:'nsm-badge'},
+  bm:{score:'bm-t2',badge:'bm-badge'}
+};
+function updateStickyBar(){
+  var bar = document.getElementById('stickyScoreBar');
+  if (!bar) return;
+  var activePanel = document.querySelector('.panel.active');
+  var map = activePanel ? SSB_MAP[activePanel.id.replace('panel-','')] : null;
+  if (!map) { bar.classList.add('ssb-hidden'); return; }
+  var scoreEl = document.getElementById(map.score);
+  var badgeEl = document.getElementById(map.badge);
+  var numEl = document.getElementById('ssb-num');
+  var ssbBadgeEl = document.getElementById('ssb-badge');
+  if (scoreEl && numEl) {
+    numEl.textContent = scoreEl.textContent;
+    numEl.style.color = scoreEl.style.color || '';
+  }
+  if (badgeEl && ssbBadgeEl) ssbBadgeEl.innerHTML = badgeEl.innerHTML;
+  bar.classList.remove('ssb-hidden');
+}
+document.addEventListener('input', function(e){
+  if (e.target && e.target.matches && e.target.matches('input[type=range]')) {
+    requestAnimationFrame(function(){ try { updateStickyBar(); } catch(err) { console.warn('sticky bar update failed', err); } });
+  }
+});
+document.addEventListener('DOMContentLoaded', function(){
+  requestAnimationFrame(function(){ try { updateStickyBar(); } catch(err) { console.warn('sticky bar update failed', err); } });
+});
 
 // ═══════════════════════════════════════════════════════════════
 // MY POINTS TRACKER — fixed & enhanced
@@ -2379,5 +2430,11 @@ function trkInit(){
   });
 })();
 </script>
+
+<div class="sticky-score-bar ssb-hidden" id="stickyScoreBar" aria-hidden="true">
+  <div class="ssb-left"><span class="ssb-num" id="ssb-num">&mdash;</span><span class="ssb-max">/ 100 pts</span></div>
+  <div class="ssb-badge" id="ssb-badge"></div>
+</div>
+
 </body>
 </html>
