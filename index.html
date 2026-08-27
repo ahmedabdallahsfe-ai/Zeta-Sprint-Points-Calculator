@@ -474,6 +474,18 @@ input[type=range]::-moz-range-thumb{width:30px;height:30px}
 .kc{padding:16px 16px 18px}
 .kg{gap:12px}
 }
+
+/* Print & IO button styles */
+@media print {
+  .hdr, .tabs, .sidebar-guide, .trk-entry-card, .copy-score-btn, .trk-io-btns, footer, .sticky-score-bar { display: none !important; }
+  body { background: #fff !important; color: #000 !important; }
+  .page-wrap, .content-main-inner { max-width: 100% !important; padding: 0 !important; }
+  .period-view { display: block !important; }
+}
+.trk-io-btns { display: flex; gap: 8px; margin-top: 8px; }
+.trk-io-btn { flex: 1; padding: 8px 12px; border-radius: 8px; font-family: 'Rajdhani', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; border: 1.5px solid var(--bp); background: var(--wh); color: var(--bd); transition: all .2s; text-align: center; }
+.trk-io-btn:hover { background: var(--bxp); border-color: var(--b); }
+
 </style>
 </head>
 <body>
@@ -490,12 +502,12 @@ input[type=range]::-moz-range-thumb{width:30px;height:30px}
 </div>
 
 <div class="tabs" id="tabsBar">
-  <button class="tb active" data-role="msr">Medical Rep</button>
-  <button class="tb" data-role="chc">CHC / Sales Rep</button>
-  <button class="tb" data-role="dm">District Manager</button>
-  <button class="tb" data-role="asm">Area Sales Mgr</button>
-  <button class="tb" data-role="nsm">NSM</button>
-  <button class="tb" data-role="bm">Brand Manager</button>
+  <button class="tb active" role="tab" aria-selected="true" data-role="msr">Medical Rep</button>
+  <button class="tb" role="tab" aria-selected="false" data-role="chc">CHC / Sales Rep</button>
+  <button class="tb" role="tab" aria-selected="false" data-role="dm">District Manager</button>
+  <button class="tb" role="tab" aria-selected="false" data-role="asm">Area Sales Mgr</button>
+  <button class="tb" role="tab" aria-selected="false" data-role="nsm">NSM</button>
+  <button class="tb" role="tab" aria-selected="false" data-role="bm">Brand Manager</button>
   <button class="tb" data-role="tracker">&#128202; My Tracker</button>
 </div>
 
@@ -2350,6 +2362,43 @@ function fallbackCopy(text) {
 function showCopyToast() {
   var t = document.getElementById('copy-toast');
   if(t){ t.classList.add('show'); setTimeout(function(){ t.classList.remove('show'); }, 3000); }
+}
+
+
+function trkExportData() {
+  try {
+    const data = trkGetData();
+    const jsonStr = JSON.stringify(data, null, 2);
+    const blob = new Blob([jsonStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'zeta_sprint_tracker_backup_' + new Date().toISOString().slice(0, 10) + '.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  } catch (err) {
+    alert('Could not export backup: ' + err.message);
+  }
+}
+
+function trkImportData(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const parsed = JSON.parse(e.target.result);
+      if (!parsed || typeof parsed !== 'object') throw new Error('Invalid JSON format');
+      localStorage.setItem('zetaTracker', JSON.stringify(parsed));
+      trkInit();
+      alert('Data successfully imported!');
+    } catch (err) {
+      alert('Error importing backup: ' + err.message);
+    }
+  };
+  reader.readAsText(file);
 }
 
 function trkInit(){
